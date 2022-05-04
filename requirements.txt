@@ -1,0 +1,5 @@
+jupyter==2.0.1
+from_root==1.0.2
+wandb==0.12.16
+
+
