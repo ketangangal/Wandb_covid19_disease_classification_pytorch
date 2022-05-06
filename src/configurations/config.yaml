@@ -1,8 +1,21 @@
-parameters:
-  Num_Epochs : 1
+train_parameters:
+  Num_Epochs : 2
   Batch_size : 32
   learning_rate : 0.001
   eps : 1e-08
   shuffle : True
   in_channels : 1
   output : 3
+
+test_parameters:
+  Num_Epochs : 1
+  Batch_size : 8
+  learning_rate : 0.001
+  eps : 1e-08
+  shuffle : False
+  in_channels : 1
+  output : 3
+
+
+run:
+  run_name:
