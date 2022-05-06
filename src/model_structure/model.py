@@ -1,6 +1,9 @@
 import torch.nn as nn
 import torch
 
+
+# Add Batch normalization and DropOuts
+
 class NeuralNetwork(nn.Module):
     def __init__(self, in_channels=None, output=None) -> None:
         super(NeuralNetwork, self).__init__()
@@ -28,7 +31,7 @@ class NeuralNetwork(nn.Module):
 
         # Input [32*32*32]
         self.fully_connected_block = nn.Sequential(
-            nn.Linear(in_features=32*32*32, out_features=64, bias=True),
+            nn.Linear(in_features=32 * 32 * 32, out_features=64, bias=True),
             nn.ReLU(),
             nn.Linear(in_features=64, out_features=32, bias=True),
             nn.ReLU(),
@@ -36,13 +39,8 @@ class NeuralNetwork(nn.Module):
         )
         # output [3]
 
-    def forward(self,x):
+    def forward(self, x):
         features = self.conv_block(x)
         flatten = self.flatten(features)
         result = self.fully_connected_block(flatten)
         return result
-
-
-
-
-

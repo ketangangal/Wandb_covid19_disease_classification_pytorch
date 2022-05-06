@@ -31,6 +31,7 @@ class CustomDataset(Dataset):
     def label_transformations(self,class_id):
         class_id = self.label_map[class_id]
         class_id = torch.tensor(class_id)
+        return class_id
 
     def __len__(self):
         return self.data.__len__()
@@ -39,6 +40,6 @@ class CustomDataset(Dataset):
         img, class_id = self.data[idx]
         # Image manipulation
         img = self.image_transformation(img)
-        class_id = label_transformations(class_id)
+        class_id = self.label_transformations(class_id)
 
         return img, class_id

@@ -5,11 +5,13 @@ import matplotlib.pyplot as plt
 import os
 import torch
 
+
 def read_config(config_path):
     with open(config_path) as config_file:
         content = yaml.safe_load(config_file)
 
     return content
+
 
 def get_unique_filename(filename, typ):
     if typ == 'Plot':
@@ -20,6 +22,13 @@ def get_unique_filename(filename, typ):
         return unique_filename
     else:
         return None
+
+
+def update_config(config_path, data):
+    with open(config_path, 'w') as config_file:
+        config_file.write(yaml.dump(data, default_flow_style=False))
+    return
+
 
 def save_plot(loss, acc, name, path):
     unique_name1 = get_unique_filename(name, typ='Plot')
@@ -34,4 +43,3 @@ def save_model(model, name, path):
     unique_name = get_unique_filename(name, typ='Model')
     path_to_model = os.path.join(path, unique_name)
     torch.save(model, path_to_model)
-
